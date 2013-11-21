@@ -1,8 +1,8 @@
-c:\users\jdforsythe\documents\visual studio 2012\Projects\CB Copy Search\CB Copy Search\bin\Release\CB Copy Search.exe.config
-c:\users\jdforsythe\documents\visual studio 2012\Projects\CB Copy Search\CB Copy Search\bin\Release\CB Copy Search.exe
-c:\users\jdforsythe\documents\visual studio 2012\Projects\CB Copy Search\CB Copy Search\bin\Release\CB Copy Search.pdb
-c:\users\jdforsythe\documents\visual studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB_Copy_Search.Form1.resources
-c:\users\jdforsythe\documents\visual studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB_Copy_Search.Resources.resources
-c:\users\jdforsythe\documents\visual studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.vbproj.GenerateResource.Cache
-c:\users\jdforsythe\documents\visual studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.exe
-c:\users\jdforsythe\documents\visual studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.pdb
+C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\bin\Release\CB Copy Search.exe.config
+C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\bin\Release\CB Copy Search.exe
+C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\bin\Release\CB Copy Search.pdb
+C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB_Copy_Search.Form1.resources
+C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB_Copy_Search.Resources.resources
+C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.vbproj.GenerateResource.Cache
+C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.exe
+C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.pdb
