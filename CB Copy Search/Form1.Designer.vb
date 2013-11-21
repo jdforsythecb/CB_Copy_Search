@@ -38,14 +38,14 @@ Partial Class Form1
         Me.lstbxResults.FormattingEnabled = True
         Me.lstbxResults.Location = New System.Drawing.Point(16, 56)
         Me.lstbxResults.Name = "lstbxResults"
-        Me.lstbxResults.Size = New System.Drawing.Size(382, 368)
+        Me.lstbxResults.Size = New System.Drawing.Size(186, 368)
         Me.lstbxResults.TabIndex = 1
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(410, 438)
+        Me.ClientSize = New System.Drawing.Size(214, 438)
         Me.Controls.Add(Me.lstbxResults)
         Me.Controls.Add(Me.txtSearch)
         Me.Name = "Form1"

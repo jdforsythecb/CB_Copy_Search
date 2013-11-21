@@ -6,3 +6,15 @@ C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy
 C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.vbproj.GenerateResource.Cache
 C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.exe
 C:\Users\jdforsythe\Documents\Visual Studio 2012\Projects\CB Copy Search\CB Copy Search\obj\Release\CB Copy Search.pdb
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\bin\Release\CB Copy Search.exe.config
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\bin\Release\CB Copy Search.exe.manifest
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\bin\Release\CB Copy Search.application
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\bin\Release\CB Copy Search.exe
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\bin\Release\CB Copy Search.pdb
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB_Copy_Search.Form1.resources
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB_Copy_Search.Resources.resources
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.vbproj.GenerateResource.Cache
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.exe.manifest
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.application
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.exe
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.pdb

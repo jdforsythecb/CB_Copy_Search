@@ -5,32 +5,61 @@ Imports System.IO
 Public Class Form1
 
     '' global constants for base paths
-    Private Const CBBASEPATH As String = "g:\cb"
-    Private Const MCDBASEPATH As String = "g:\McDaniel"
-    Private Const UNBASEBATH As String = "g:\United"
+    Private Const COPYBASEDRIVEPATH As String = "g:\"
+    Private Const CBBASEPATH As String = "cb"
+    Private Const MCDBASEPATH As String = "McDaniel"
+    Private Const UNBASEBATH As String = "United"
+    Private Const FCBASEBATH As String = "Full Color Sheets"
 
-    '' global variable to hold the current fileinfo list
+    '' global variable to hold the current fileinfo list - IO.FileInfo to preserve the name and path of files
     Dim fileList As New List(Of IO.FileInfo)
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    '' global variable to hold the full list of paths to search
+    Dim pathList As New List(Of String)
 
-    End Sub
+    '' Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    ''End Sub
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
 
-        '' always clear the list when the input changes
+        '' always clear the lists when the input changes
         lstbxResults.Items.Clear()
+        fileList.Clear()
+        pathList.Clear()
 
         '' if the box isn't empty or less than two characters, search as the user types
         If (txtSearch.Text <> "" And txtSearch.Text.Length > 1) Then
 
             '' get the search path and search string
-            Dim path As String = getPath(txtSearch.Text)
+            Dim topLevelPath As String = getPath(txtSearch.Text)
             Dim search As String = getSearchString(txtSearch.Text)
+
+            '' add the topLevelPath to the search
+            pathList.Add(topLevelPath)
+
+            '' recursively add all subfolders at the top level path
+            getAllSubfolders(topLevelPath)
+
+            '' inserts the FCBASEBATH into the topLevelPath string after the COPYBASEDRIVEPATH string
+            '' so the new path is of the form "g:\FCBASEPATH\cbA"
+            topLevelPath = topLevelPath.Insert(COPYBASEDRIVEPATH.Length, FCBASEBATH + "\")
+
+            '' add this new topLevelPath to the search
+            pathList.Add(topLevelPath)
+
+            '' now with the full color folder in the path, add subfolders again
+            getAllSubfolders(topLevelPath)
+
+            '' debug - add paths to path list box
+            'lstbxPathList.Items.Clear()
+            'For Each path In pathList
+            'lstbxPathList.Items.Add(Path)
+            'Next
 
             '' only get a list if there's a search string (there's enough characters typed in)
             If (search.Length > 0) Then
-                fileList = getFileList(path, search)
+                getFileList(search)
 
                 '' add the new results to the list
                 For Each file In fileList
@@ -56,9 +85,47 @@ Public Class Form1
 
     End Sub
 
+    Private Sub lstbxResults_MouseDown(sender As Object, e As System.Windows.Forms.MouseEventArgs) Handles lstbxResults.MouseDown
+        '' determine if this is a right mouse click
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            '' did we actually right-click on an item in the box
+            Dim selInd As Integer = lstbxResults.IndexFromPoint(e.X, e.Y)
+
+            '' if the returned selected index from cursor coordinates is not -1, then we clicked on something
+            If selInd <> -1 Then
+
+                '' get the full path of the item selected
+                Dim selectedPath As String = fileList(selInd).FullName
+
+                '' open explorer and select the file clicked
+                Call Shell("explorer.exe /select," & selectedPath, AppWinStyle.NormalFocus)
+
+            End If
+        End If
+    End Sub
+
     '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
     '' Helper functions
     '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+    Private Sub getAllSubfolders(ByVal topLevelPath As String)
+        Dim subfolder As String
+
+        Try
+            '' iterate through folders recursively, adding all subfolders to the list
+            '' this will recursively call itself, adding items to the global
+            '' pathList List(Of String) each time
+            For Each subfolder In Directory.GetDirectories(topLevelPath)
+                pathList.Add(subfolder)
+
+                '' now for each subfolder, run this again recursively
+                getAllSubfolders(subfolder)
+
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
 
     Private Function getPath(ByVal input As String) As String
 
@@ -66,11 +133,11 @@ Public Class Form1
         '' if this is United, the files are located in g:\United\XX\ where XX is first 2 chars
         '' if this is McDaniel, the files are at g:\McDaniel\XX\ where XX is first 2 chars
         If (isChurchBudget(input)) Then
-            Return CBBASEPATH + input.Substring(0, 1) + "\"
+            Return COPYBASEDRIVEPATH + CBBASEPATH + input.Substring(0, 1) + "\"
         ElseIf (isUnited(input)) Then
-            Return UNBASEBATH + "\" + input.Substring(0, 2) + "\"
+            Return COPYBASEDRIVEPATH + UNBASEBATH + "\" + input.Substring(0, 2) + "\"
         Else
-            Return MCDBASEPATH + "\" + input.Substring(0, 2) + "\"
+            Return COPYBASEDRIVEPATH + MCDBASEPATH + "\" + input.Substring(0, 2) + "\"
         End If
 
     End Function
@@ -115,23 +182,29 @@ Public Class Form1
 
     End Function
 
-    Private Function getFileList(ByVal path As String, ByVal search As String) As List(Of IO.FileInfo)
-        Dim fileList As New List(Of IO.FileInfo)
+    Private Sub getFileList(ByVal search As String)
 
-        '' if path exists, get a list of files from search
-        If (Directory.Exists(path)) Then
-            Dim folderInfo As New IO.DirectoryInfo(path)
-            Dim arrFilesInFolder() As IO.FileInfo
+        '' loop through list of paths
+        For Each path In pathList
 
-            arrFilesInFolder = folderInfo.GetFiles("*" + search + "*.*")
+            '' if path exists, get a list of files from search and add it to the global fileList List(Of IO.FileInfo)
+            If (Directory.Exists(path)) Then
+                Dim folderInfo As New IO.DirectoryInfo(path)
+                Dim arrFilesInFolder() As IO.FileInfo
 
-            For Each fileInFolder In arrFilesInFolder
-                fileList.Add(fileInFolder)
-            Next
+                arrFilesInFolder = folderInfo.GetFiles("*" + search + "*.*")
 
-        End If
+                '' copy the array of files to a list and append to the global fileList
+                fileList.AddRange(arrFilesInFolder.ToList())
 
-        Return fileList
-    End Function
+                '' obsolete by above code
+                'For Each fileInFolder In arrFilesInFolder
+                'fileList.Add(fileInFolder)
+                'Next
+
+            End If
+        Next
+
+    End Sub
 
 End Class
