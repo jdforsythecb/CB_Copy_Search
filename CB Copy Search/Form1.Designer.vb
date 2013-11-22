@@ -24,6 +24,7 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.lstbxResults = New System.Windows.Forms.ListBox()
+        Me.lstboxPathList = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'txtSearch
@@ -41,11 +42,20 @@ Partial Class Form1
         Me.lstbxResults.Size = New System.Drawing.Size(186, 368)
         Me.lstbxResults.TabIndex = 1
         '
+        'lstboxPathList
+        '
+        Me.lstboxPathList.FormattingEnabled = True
+        Me.lstboxPathList.Location = New System.Drawing.Point(222, 56)
+        Me.lstboxPathList.Name = "lstboxPathList"
+        Me.lstboxPathList.Size = New System.Drawing.Size(274, 368)
+        Me.lstboxPathList.TabIndex = 2
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(214, 438)
+        Me.ClientSize = New System.Drawing.Size(508, 438)
+        Me.Controls.Add(Me.lstboxPathList)
         Me.Controls.Add(Me.lstbxResults)
         Me.Controls.Add(Me.txtSearch)
         Me.Name = "Form1"
@@ -56,5 +66,6 @@ Partial Class Form1
     End Sub
     Friend WithEvents txtSearch As System.Windows.Forms.TextBox
     Friend WithEvents lstbxResults As System.Windows.Forms.ListBox
+    Friend WithEvents lstboxPathList As System.Windows.Forms.ListBox
 
 End Class

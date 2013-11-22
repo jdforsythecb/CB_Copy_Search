@@ -52,9 +52,9 @@ Public Class Form1
             getAllSubfolders(topLevelPath)
 
             '' debug - add paths to path list box
-            'lstbxPathList.Items.Clear()
+            'lstboxPathList.Items.Clear()
             'For Each path In pathList
-            'lstbxPathList.Items.Add(Path)
+            '    lstboxPathList.Items.Add(path)
             'Next
 
             '' only get a list if there's a search string (there's enough characters typed in)
@@ -192,17 +192,29 @@ Public Class Form1
                 Dim folderInfo As New IO.DirectoryInfo(path)
                 Dim arrFilesInFolder() As IO.FileInfo
 
-                arrFilesInFolder = folderInfo.GetFiles("*" + search + "*.*")
-
+                '' old way, getting the api to run the wilcard match
+                'arrFilesInFolder = folderInfo.GetFiles("*" + search + "*.*")
                 '' copy the array of files to a list and append to the global fileList
-                fileList.AddRange(arrFilesInFolder.ToList())
+                'fileList.AddRange(arrFilesInFolder.ToList())
 
-                '' obsolete by above code
-                'For Each fileInFolder In arrFilesInFolder
-                'fileList.Add(fileInFolder)
-                'Next
+                '' because of weird results searching for, e.g. *89*.* (files came back without "89" in the name,
+                '' maybe due to something with long filenames and 8.3 equivalents?), we now get *.* and filter
+                '' the results here
+                For Each fileName As IO.FileInfo In folderInfo.GetFiles("*.*")
+                    If fileName.Name.Contains(search) Then
+                        fileList.Add(fileName)
+                    End If
+                Next
+
+                '' debug
+                lstboxPathList.Items.Add(path)
+
+            Else
+                '' debug
+                lstboxPathList.Items.Add("====" + path)
 
             End If
+
         Next
 
     End Sub
