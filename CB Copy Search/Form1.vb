@@ -151,8 +151,9 @@ Public Class Form1
 
         End If
 
+        '' NOTE: BOOKLETS ARE A MESS RIGHT NOW.. THINK ABOUT THIS
         '' same path for all company's booklets/uv covers
-        paths.Add(CBBOOKLETPATH)
+        'paths.Add(CBBOOKLETPATH)
 
         '' same path for all company's cartons
         paths.Add(CBCARTONPATH)

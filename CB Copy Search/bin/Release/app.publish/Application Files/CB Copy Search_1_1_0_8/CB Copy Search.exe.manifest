@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="CB Copy Search.exe" version="1.1.0.8" publicKeyToken="1f9ad3dcec2f80a2" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="icon.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="CB Copy Search" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="CB Copy Search.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CB Copy Search.exe" size="124928">
+      <assemblyIdentity name="CB Copy Search" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>Ph+qrRB6oFEzn0L5uiTUn8GOEZo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="CB Copy Search.exe.config" size="1130">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>G7vCZbJOmBv5P+2i5dn1NcKzewg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="icon.ico" size="99678">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>5mil7duoYw+LC9kvmsf6UlWWmaY=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=Graphics-1\User" issuerKeyHash="dc3f47fb49d082d2b326926d0b497ac627ab8dab" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>apmmmjQJtjggyv9EUtll4uDSaJQ=</DigestValue></Reference></SignedInfo><SignatureValue>Jua47Tuih5sVy8fCNx9vp77USbbrpEGLCFqkO5DlkchpHJdMAn408rSaqeuXkDGKBoAfFy5OmqIMsDHLyobZz3KSAGqA8qwBG1nWw353FNWc0C0xnY46/mOPElBnFYW7Bz9LEHhvhxKIzQpxBQNSanN0A4o47RmbgDNvPOp/CaA=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>saUoYujA9jmHoUswzmP0fv5qXBXrdhlWlQfFE7fFHcslTFZOpetpSprVF2ke+1xG9F2mCQgHTDObTn1IXcBDFd2u9r49SVVo9KGQH85THvi1Ueo+fFn32L4+jvF7pqc9APgPIkq5ewDeFKomAwuKKvkvOpnl30BjjiKQ/Q/h//E=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="9468d2e0e265d95244ffca2038b609349aa6996a" Description="" Url=""><as:assemblyIdentity name="CB Copy Search.exe" version="1.1.0.8" publicKeyToken="1f9ad3dcec2f80a2" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=Graphics-1\User</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>zp/FyPxQShCVvx1HeV+qR4wckBw=</DigestValue></Reference></SignedInfo><SignatureValue>fADaErb3CW+qpaZBxXdnZOZ0oGR5s9aRJSgnk4UtqXAZaQu8Kz8r0dlw01cmo97sf9pxphQ4/UAsrQ+KZZW8tT5oFKpKflyJ/MieU0P0yK/Rvhb7y6CgtdhbzEqC9C7Xc5kKJwfqQg6AAP+ct9ZGrhWd34EgT+4FByQHf1ingmc=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>saUoYujA9jmHoUswzmP0fv5qXBXrdhlWlQfFE7fFHcslTFZOpetpSprVF2ke+1xG9F2mCQgHTDObTn1IXcBDFd2u9r49SVVo9KGQH85THvi1Ueo+fFn32L4+jvF7pqc9APgPIkq5ewDeFKomAwuKKvkvOpnl30BjjiKQ/Q/h//E=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB1TCCAT6gAwIBAgIQRpzKgb44cqdALsGUbKhWTjANBgkqhkiG9w0BAQUFADApMScwJQYDVQQDHh4ARwByAGEAcABoAGkAYwBzAC0AMQBcAFUAcwBlAHIwHhcNMTMxMTIxMTMyNzU2WhcNMTQxMTIxMTkyNzU2WjApMScwJQYDVQQDHh4ARwByAGEAcABoAGkAYwBzAC0AMQBcAFUAcwBlAHIwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBALGlKGLowPY5h6FLMM5j9H7+alwV63YZVpUHxRO3xR3LJUxWTqXraUqa1RdpHvtcRvRdpgkIB0wzm059SF3AQxXdrva+PUlVaPShkB/OUx74tVHqPnxZ99i+Po7xe6anPQD4DyJKuXsA3hSqJgMLiir5LzqZ5d9AY44ikP0P4f/xAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAVgwPSxd7/hNZMVYpFScTttEvzCAtdHcgNy3Pc1QWMge2JIh6LjxLkedfDzTktRk+BlQYCD6Cbmbci5vxOwVP7sMXDJAZRz+8zWyY9tCeWhObbJerS8N5D9cDOnJxM9owYII5JVXZlg0WsxDDlMPdU054ytHqZATWTpMBX4Tj6kA=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
