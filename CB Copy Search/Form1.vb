@@ -12,6 +12,10 @@ Public Class Form1
     Private Const UNBASEBATH As String = "United"
     Private Const UNBWPATHDIFFERENCE As String = "Un"
     Private Const FCBASEBATH As String = "Full Color Sheets"
+    Private Const CBBOOKLETPATH As String = "g:\CHKBK\"
+    Private Const CBCARTONPATH As String = "g:\CARTONS\"
+
+
     Private Const MMBASEDRIVEPATH As String = "h:\"
     Private Const MMBASEPATH As String = "MM"
     Private Const MMSUBPATH As String = "Mm"
@@ -146,6 +150,12 @@ Public Class Form1
             paths.Add(COPYBASEDRIVEPATH + FCBASEBATH + "\" + MCDBASEPATH + "\" + input.Substring(0, 2) + "\")
 
         End If
+
+        '' same path for all company's booklets/uv covers
+        paths.Add(CBBOOKLETPATH)
+
+        '' same path for all company's cartons
+        paths.Add(CBCARTONPATH)
 
         Return paths
 
