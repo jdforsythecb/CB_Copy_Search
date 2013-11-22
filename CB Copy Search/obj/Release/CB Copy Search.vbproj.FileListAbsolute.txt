@@ -18,3 +18,4 @@ G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.exe.m
 G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.application
 G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.exe
 G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB Copy Search.pdb
+G:\jdforsythe\dev\CB_Copy_Search\CB Copy Search\obj\Release\CB_Copy_Search.Settings.resources
