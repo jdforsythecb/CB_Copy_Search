@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CB Copy Search.exe" size="117760">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CB Copy Search.exe" size="118272">
       <assemblyIdentity name="CB Copy Search" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>IcGOgtHZCSVpZQrEzLpuulozLEk=</dsig:DigestValue>
+        <dsig:DigestValue>+0eqWuTH9BvAM/ZPDcpE04rgFSA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -8,7 +8,9 @@ Public Class Form1
     Private Const COPYBASEDRIVEPATH As String = "g:\"
     Private Const CBBASEPATH As String = "cb"
     Private Const MCDBASEPATH As String = "McDaniel"
+    Private Const MCDBWPATHDIFFERENCE As String = "MC"
     Private Const UNBASEBATH As String = "United"
+    Private Const UNBWPATHDIFFERENCE As String = "Un"
     Private Const FCBASEBATH As String = "Full Color Sheets"
 
     '' global variable to hold the current fileinfo list - IO.FileInfo to preserve the name and path of files
@@ -32,24 +34,20 @@ Public Class Form1
         If (txtSearch.Text <> "" And txtSearch.Text.Length > 1) Then
 
             '' get the search path and search string
-            Dim topLevelPath As String = getPath(txtSearch.Text)
+            Dim topLevelPaths As List(Of String) = getTopLevelPaths(txtSearch.Text)
             Dim search As String = getSearchString(txtSearch.Text)
 
-            '' add the topLevelPath to the search
-            pathList.Add(topLevelPath)
+            '' loop through the top level paths returned, adding them to the list and getting all
+            '' their subfolders to add to the list
+            For Each topLevelPath In topLevelPaths
 
-            '' recursively add all subfolders at the top level path
-            getAllSubfolders(topLevelPath)
 
-            '' inserts the FCBASEBATH into the topLevelPath string after the COPYBASEDRIVEPATH string
-            '' so the new path is of the form "g:\FCBASEPATH\cbA"
-            topLevelPath = topLevelPath.Insert(COPYBASEDRIVEPATH.Length, FCBASEBATH + "\")
+                '' add the topLevelPath to the search
+                pathList.Add(topLevelPath)
 
-            '' add this new topLevelPath to the search
-            pathList.Add(topLevelPath)
-
-            '' now with the full color folder in the path, add subfolders again
-            getAllSubfolders(topLevelPath)
+                '' recursively add all subfolders at the top level path
+                getAllSubfolders(topLevelPath)
+            Next
 
             '' debug - add paths to path list box
             'lstboxPathList.Items.Clear()
@@ -127,18 +125,29 @@ Public Class Form1
         End Try
     End Sub
 
-    Private Function getPath(ByVal input As String) As String
+    Private Function getTopLevelPaths(ByVal input As String) As List(Of String)
+        Dim paths As New List(Of String)
 
-        '' if this is Church Budget, the files are located in g:\cbX where X is first char
-        '' if this is United, the files are located in g:\United\XX\ where XX is first 2 chars
-        '' if this is McDaniel, the files are at g:\McDaniel\XX\ where XX is first 2 chars
         If (isChurchBudget(input)) Then
-            Return COPYBASEDRIVEPATH + CBBASEPATH + input.Substring(0, 1) + "\"
+            '' if this is Church Budget, the files are located in g:\cbX where X is first char
+            '' and g:\Full Color Sheets\cbX
+            paths.Add(COPYBASEDRIVEPATH + CBBASEPATH + input.Substring(0, 1) + "\")
+            paths.Add(COPYBASEDRIVEPATH + FCBASEBATH + "\" + input.Substring(0, 1) + "\")
+
         ElseIf (isUnited(input)) Then
-            Return COPYBASEDRIVEPATH + UNBASEBATH + "\" + input.Substring(0, 2) + "\"
+            '' if this is United, the files are located in g:\United\UnXX\ where XX is first 2 chars
+            '' and g:\Full Color Sheets\United\XX
+            paths.Add(COPYBASEDRIVEPATH + UNBASEBATH + "\" + UNBWPATHDIFFERENCE + input.Substring(0, 2) + "\")
+            paths.Add(COPYBASEDRIVEPATH + FCBASEBATH + "\" + UNBASEBATH + "\" + input.Substring(0, 2) + "\")
         Else
-            Return COPYBASEDRIVEPATH + MCDBASEPATH + "\" + input.Substring(0, 2) + "\"
+            '' if this is McDaniel, the files are at g:\McDaniel\MCXX\ where XX is first 2 chars
+            '' and g:\Full Color Sheets\McDaniel\XX
+            paths.Add(COPYBASEDRIVEPATH + MCDBASEPATH + "\" + MCDBWPATHDIFFERENCE + input.Substring(0, 2) + "\")
+            paths.Add(COPYBASEDRIVEPATH + FCBASEBATH + "\" + MCDBASEPATH + "\" + input.Substring(0, 2) + "\")
+
         End If
+
+        Return paths
 
     End Function
 
@@ -190,9 +199,10 @@ Public Class Form1
             '' if path exists, get a list of files from search and add it to the global fileList List(Of IO.FileInfo)
             If (Directory.Exists(path)) Then
                 Dim folderInfo As New IO.DirectoryInfo(path)
-                Dim arrFilesInFolder() As IO.FileInfo
 
                 '' old way, getting the api to run the wilcard match
+
+                '' Dim arrFilesInFolder() As IO.FileInfo
                 'arrFilesInFolder = folderInfo.GetFiles("*" + search + "*.*")
                 '' copy the array of files to a list and append to the global fileList
                 'fileList.AddRange(arrFilesInFolder.ToList())
@@ -211,7 +221,7 @@ Public Class Form1
 
             Else
                 '' debug
-                lstboxPathList.Items.Add("====" + path)
+                lstboxPathList.Items.Add("e00 " + path)
 
             End If
 
