@@ -6,7 +6,19 @@
         'MessageBox.Show("CB: " + rdioCB.Checked.ToString() + " MM: " + rdioMM.Checked.ToString() + " addtl: " + txtExtraPaths.Text)
         My.Settings.isCB = rdioCB.Checked
         My.Settings.isMM = rdioMM.Checked
-        My.Settings.additionalPaths = txtExtraPaths.Text
+
+        '' clear out extra paths first
+        My.Settings.additionalPaths = ""
+
+        '' remove blank lines from text box
+        If (txtExtraPaths.Text <> "") Then
+            For Each line In txtExtraPaths.Text.Split(Environment.NewLine)
+                If line.Trim.Length > 0 Then
+                    My.Settings.additionalPaths += line + Environment.NewLine
+                End If
+            Next
+        End If
+
         My.Settings.Save()
         Me.Close()
     End Sub
@@ -19,12 +31,18 @@
         rdioCB.Checked = My.Settings.isCB
         rdioMM.Checked = My.Settings.isMM
 
-        For Each line In My.Settings.additionalPaths.Split(Environment.NewLine)
-            If line.Trim.Length > 0 Then
-                txtExtraPaths.Text += line + Environment.NewLine
-                additionalPaths.Add(line)
-            End If
-        Next
+        If (My.Settings.additionalPaths <> "") Then
+
+            For Each line In My.Settings.additionalPaths.Split(Environment.NewLine)
+                If line.Trim.Length > 0 Then
+                    txtExtraPaths.Text += line + Environment.NewLine
+                    additionalPaths.Add(line)
+                End If
+            Next
+        Else
+            txtExtraPaths.Text = ""
+        End If
+
 
     End Sub
 
