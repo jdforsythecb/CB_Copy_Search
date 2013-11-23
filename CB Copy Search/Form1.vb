@@ -136,7 +136,7 @@ Public Class Form1
             '' if this is Church Budget, the files are located in g:\cbX where X is first char
             '' and g:\Full Color Sheets\cbX
             paths.Add(COPYBASEDRIVEPATH + CBBASEPATH + input.Substring(0, 1) + "\")
-            paths.Add(COPYBASEDRIVEPATH + FCBASEBATH + "\" + input.Substring(0, 1) + "\")
+            paths.Add(COPYBASEDRIVEPATH + FCBASEBATH + "\" + CBBASEPATH + input.Substring(0, 1) + "\")
 
         ElseIf (CBisUnited(input)) Then
             '' if this is United, the files are located in g:\United\UnXX\ where XX is first 2 chars
