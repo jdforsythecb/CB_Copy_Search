@@ -255,8 +255,9 @@ Public Class Form1
                 '' because of weird results searching for, e.g. *89*.* (files came back without "89" in the name,
                 '' maybe due to something with long filenames and 8.3 equivalents?), we now get *.* and filter
                 '' the results here
+                '' use to upper for case insensitive searching
                 For Each fileName As IO.FileInfo In folderInfo.GetFiles("*.*")
-                    If fileName.Name.Contains(search) Then
+                    If fileName.Name.ToUpper.Contains(search.ToUpper) Then
                         fileList.Add(fileName)
                     End If
                 Next
