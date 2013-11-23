@@ -19,11 +19,9 @@
         rdioCB.Checked = My.Settings.isCB
         rdioMM.Checked = My.Settings.isMM
 
-        For Each line In My.Settings.additionalPaths.Split(CChar(vbCrLf))
-            '' add every line to the text box
-            txtExtraPaths.Text += line + vbCrLf
-            '' only add to the list if the line is not empty
+        For Each line In My.Settings.additionalPaths.Split(Environment.NewLine)
             If line.Trim.Length > 0 Then
+                txtExtraPaths.Text += line + Environment.NewLine
                 additionalPaths.Add(line)
             End If
         Next
