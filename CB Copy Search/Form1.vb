@@ -155,8 +155,9 @@ Public Class Form1
         '' same path for all company's booklets/uv covers
         'paths.Add(CBBOOKLETPATH)
 
+        '' NOTE: CARTONS SEARCH IS A MESS TOO
         '' same path for all company's cartons
-        paths.Add(CBCARTONPATH)
+        '' paths.Add(CBCARTONPATH)
 
         Return paths
 
