@@ -210,7 +210,9 @@ Public Class Form1
                 '' because of weird results searching for, e.g. *89*.* (files came back without "89" in the name,
                 '' maybe due to something with long filenames and 8.3 equivalents?), we now get *.* and filter
                 '' the results here
-                For Each fileName As IO.FileInfo In folderInfo.GetFiles("*.*")
+                '' 11-29-13 added OrderBy to sort files alphabetically
+                For Each fileName As IO.FileInfo In folderInfo.GetFiles("*.*").OrderBy(Function(x) x.Name)
+
                     If fileName.Name.Contains(search) Then
                         fileList.Add(fileName)
                     End If
