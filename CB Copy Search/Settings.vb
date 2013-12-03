@@ -14,7 +14,7 @@
         If (txtExtraPaths.Text <> "") Then
             For Each line In txtExtraPaths.Text.Split(Environment.NewLine)
                 If line.Trim.Length > 0 Then
-                    My.Settings.additionalPaths += line + Environment.NewLine
+                    My.Settings.additionalPaths += line.Trim + Environment.NewLine
                 End If
             Next
         End If
@@ -35,8 +35,8 @@
 
             For Each line In My.Settings.additionalPaths.Split(Environment.NewLine)
                 If line.Trim.Length > 0 Then
-                    txtExtraPaths.Text += line + Environment.NewLine
-                    additionalPaths.Add(line)
+                    txtExtraPaths.Text += line.Trim + Environment.NewLine
+                    additionalPaths.Add(line.Trim)
                 End If
             Next
         Else

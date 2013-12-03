@@ -53,10 +53,10 @@ Public Class Form1
 
             '' always add additional paths from settings
             My.Settings.Reload()
-            For Each line In My.Settings.additionalPaths.Split(CChar(vbCrLf))
+            For Each line In My.Settings.additionalPaths.Split(Environment.NewLine)
                 '' only add to the list if the line is not empty
                 If line.Trim.Length > 0 Then
-                    topLevelPaths.Add(line)
+                    topLevelPaths.Add(line.Trim)
                 End If
             Next
 
@@ -270,6 +270,7 @@ Public Class Form1
             Else
                 '' debug
                 lstboxPathList.Items.Add("e00 " + path)
+                MessageBox.Show("error path: " & path & " exists? " & Directory.Exists(path).ToString())
 
             End If
 
