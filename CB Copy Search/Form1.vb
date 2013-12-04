@@ -270,7 +270,7 @@ Public Class Form1
             Else
                 '' debug
                 lstboxPathList.Items.Add("e00 " + path)
-                MessageBox.Show("error path: " & path & " exists? " & Directory.Exists(path).ToString())
+                'MessageBox.Show("error path: " & path & " exists? " & Directory.Exists(path).ToString())
 
             End If
 
