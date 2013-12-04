@@ -30,64 +30,74 @@ Public Class Form1
 
     ''End Sub
 
-    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+    '' change from text changed event to pressing enter
+    '' when adding paths with large trees the search is very slow
 
-        '' always clear the lists when the input changes
-        lstbxResults.Items.Clear()
-        fileList.Clear()
-        pathList.Clear()
+    ''    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+    Private Sub txtSearch_KeyDown(sender As Object, e As KeyEventArgs) Handles txtSearch.KeyDown
 
-        '' if the box isn't empty or less than two characters, search as the user types
-        If (txtSearch.Text <> "" And txtSearch.Text.Length > 1) Then
+        '' if this was the enter key
+        If e.KeyCode = Keys.Return Then
 
-            Dim topLevelPaths As New List(Of String)
-            Dim search As String = txtSearch.Text
+            '' always clear the lists when the input changes
+            lstbxResults.Items.Clear()
+            fileList.Clear()
+            pathList.Clear()
 
-            '' get the search path and search string
-            If (My.Settings.isCB = True) Then
-                topLevelPaths = CBgetTopLevelPaths(txtSearch.Text)
-                search = CBgetSearchString(txtSearch.Text)
-            Else
-                topLevelPaths = MMgetTopLevelPaths(txtSearch.Text)
-            End If
+            '' if the box isn't empty or less than two characters, search as the user types
+            If (txtSearch.Text <> "" And txtSearch.Text.Length > 1) Then
 
-            '' always add additional paths from settings
-            My.Settings.Reload()
-            For Each line In My.Settings.additionalPaths.Split(Environment.NewLine)
-                '' only add to the list if the line is not empty
-                If line.Trim.Length > 0 Then
-                    topLevelPaths.Add(line.Trim)
+                Dim topLevelPaths As New List(Of String)
+                Dim search As String = txtSearch.Text
+
+                '' get the search path and search string
+                If (My.Settings.isCB = True) Then
+                    topLevelPaths = CBgetTopLevelPaths(txtSearch.Text)
+                    search = CBgetSearchString(txtSearch.Text)
+                Else
+                    topLevelPaths = MMgetTopLevelPaths(txtSearch.Text)
                 End If
-            Next
 
-            '' loop through the top level paths returned, adding them to the list and getting all
-            '' their subfolders to add to the list
-            For Each topLevelPath In topLevelPaths
-
-                '' add the topLevelPath to the search
-                pathList.Add(topLevelPath)
-
-                '' recursively add all subfolders at the top level path
-                getAllSubfolders(topLevelPath)
-            Next
-
-            '' debug - add paths to path list box
-            'lstboxPathList.Items.Clear()
-            'For Each path In pathList
-            '    lstboxPathList.Items.Add(path)
-            'Next
-
-            '' only get a list if there's a search string (there's enough characters typed in)
-            If (search.Length > 0) Then
-                getFileList(search)
-
-                '' add the new results to the list
-                For Each file In fileList
-                    lstbxResults.Items.Add(file.Name)
+                '' always add additional paths from settings
+                My.Settings.Reload()
+                For Each line In My.Settings.additionalPaths.Split(Environment.NewLine)
+                    '' only add to the list if the line is not empty
+                    If line.Trim.Length > 0 Then
+                        topLevelPaths.Add(line.Trim)
+                    End If
                 Next
+
+                '' loop through the top level paths returned, adding them to the list and getting all
+                '' their subfolders to add to the list
+                For Each topLevelPath In topLevelPaths
+
+                    '' add the topLevelPath to the search
+                    pathList.Add(topLevelPath)
+
+                    '' recursively add all subfolders at the top level path
+                    getAllSubfolders(topLevelPath)
+                Next
+
+                '' debug - add paths to path list box
+                'lstboxPathList.Items.Clear()
+                'For Each path In pathList
+                '    lstboxPathList.Items.Add(path)
+                'Next
+
+                '' only get a list if there's a search string (there's enough characters typed in)
+                If (search.Length > 0) Then
+                    getFileList(search)
+
+                    '' add the new results to the list
+                    For Each file In fileList
+                        lstbxResults.Items.Add(file.Name)
+                    Next
+                End If
             End If
+
         End If
 
+        '' else wasn't enter, so don't do anything
     End Sub
 
     Private Sub lstbxResults_DoubleClick(sender As Object, e As EventArgs) Handles lstbxResults.DoubleClick
