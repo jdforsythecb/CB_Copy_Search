@@ -44,7 +44,7 @@ Public Class Form1
             fileList.Clear()
             pathList.Clear()
 
-            '' if the box isn't empty or less than two characters, search as the user types
+            '' if the box isn't empty or less than two characters, search
             If (txtSearch.Text <> "" And txtSearch.Text.Length > 1) Then
 
                 Dim topLevelPaths As New List(Of String)
@@ -88,10 +88,28 @@ Public Class Form1
                 If (search.Length > 0) Then
                     getFileList(search)
 
+                    Dim fileCount As Integer = 0
+                    Dim folderCount As Integer = 0
+                    Dim usedFolders As New List(Of String)
+
                     '' add the new results to the list
                     For Each file In fileList
                         lstbxResults.Items.Add(file.Name)
+
+                        '' if the directory isn't in the list yet, add it and increment the folder count
+                        Dim str As String = file.DirectoryName
+                        If (Not usedFolders.Contains(str)) Then
+                            usedFolders.Add(str)
+                            folderCount += 1
+                        End If
+
+                        '' for every file, increment the file count
+                        fileCount += 1
+
                     Next
+
+                    '' update the status with the counts
+                    lblStatus.Text = fileCount & " files found in " & folderCount & " folders"
                 End If
             End If
 

@@ -27,6 +27,7 @@ Partial Class Form1
         Me.lstboxPathList = New System.Windows.Forms.ListBox()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.OptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.lblStatus = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,7 +43,7 @@ Partial Class Form1
         Me.lstbxResults.FormattingEnabled = True
         Me.lstbxResults.Location = New System.Drawing.Point(16, 56)
         Me.lstbxResults.Name = "lstbxResults"
-        Me.lstbxResults.Size = New System.Drawing.Size(186, 368)
+        Me.lstbxResults.Size = New System.Drawing.Size(186, 342)
         Me.lstbxResults.TabIndex = 1
         '
         'lstboxPathList
@@ -68,11 +69,21 @@ Partial Class Form1
         Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.OptionsToolStripMenuItem.Text = "Options"
         '
+        'lblStatus
+        '
+        Me.lblStatus.AutoSize = True
+        Me.lblStatus.Location = New System.Drawing.Point(16, 418)
+        Me.lblStatus.Name = "lblStatus"
+        Me.lblStatus.Size = New System.Drawing.Size(100, 13)
+        Me.lblStatus.TabIndex = 4
+        Me.lblStatus.Text = "0 results in 0 folders"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(216, 443)
+        Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.lstboxPathList)
         Me.Controls.Add(Me.lstbxResults)
         Me.Controls.Add(Me.txtSearch)
@@ -91,5 +102,6 @@ Partial Class Form1
     Friend WithEvents lstboxPathList As System.Windows.Forms.ListBox
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents OptionsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents lblStatus As System.Windows.Forms.Label
 
 End Class
