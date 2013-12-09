@@ -19,6 +19,7 @@ Public Class Form1
     Private Const MMBASEDRIVEPATH As String = "h:\"
     Private Const MMBASEPATH As String = "MM"
     Private Const MMSUBPATH As String = "Mm"
+    Private Const MMWSCANBASEPATH As String = "g:\WSCAN\"
 
     '' global variable to hold the current fileinfo list - IO.FileInfo to preserve the name and path of files
     Dim fileList As New List(Of IO.FileInfo)
@@ -41,6 +42,7 @@ Public Class Form1
 
             '' always clear the lists when the input changes
             lstbxResults.Items.Clear()
+            lstboxPathList.Items.Clear()
             fileList.Clear()
             pathList.Clear()
 
@@ -107,6 +109,45 @@ Public Class Form1
                         fileCount += 1
 
                     Next
+
+                    '' this is hacky, needs thought out more, but it works
+                    '' now if this is MM, do a wscan search
+                    If (My.Settings.isMM) Then
+                        '' get path(s) for wscan search
+                        topLevelPaths = MMgetWscanPaths(txtSearch.Text)
+                        '' clear the lists
+                        pathList.Clear()
+                        fileList.Clear()
+
+                        For Each topLevelPath In topLevelPaths
+                            '' add the topLevelPath to the search
+                            pathList.Add(topLevelPath)
+                            getAllSubfolders(topLevelPath)
+                        Next
+
+                        '' get a list of ALL files (since they're not named with folder number, in WSCAN tree)
+                        '' we can trick getFileList(search) into giving us *.* by passing the empty string
+                        '' because String.Contains(str) if str is the empty string
+                        getFileList("")
+
+                        '' iterate through the new files
+                        For Each file In fileList
+                            lstbxResults.Items.Add(file.Name)
+
+                            '' if the directory isn't in the list, add it and increment folder count
+                            Dim str As String = file.DirectoryName
+                            If (Not usedFolders.Contains(str)) Then
+                                usedFolders.Add(str)
+                                folderCount += 1
+                            End If
+
+                            '' for every file, increment the file count
+                            fileCount += 1
+
+                        Next
+                    End If
+
+
 
                     '' update the status with the counts
                     lblStatus.Text = fileCount & " files found in " & folderCount & " folders"
@@ -244,6 +285,41 @@ Public Class Form1
 
     End Function
 
+    Private Function MMgetWscanPaths(ByVal input As String) As List(Of String)
+
+        '' for WSCAN the folders are at g:\WSCAN\MM#\#-#
+        '' same pattern as above - except for MM1, MM5, and MM9 which just have g:\WSCAN\MM#\####, the whole folder number
+        '' so for now we search the whole tree of g:\WSCAN\MM#\
+        ''paths.Add(MMWSCANBASEPATH + MMBASEPATH + input.Substring(0, 1) + "\")
+
+        '' files in WSCAN folder aren't necessarily named with the folder number so just do a search of all the MM folders
+        'For i As Integer = 1 To 9 Step 1
+        '    paths.Add(MMWSCANBASEPATH & MMBASEPATH & i & "\")
+        'Next
+
+        Dim paths As New List(Of String)
+
+        Dim firstNum As String = input.Substring(0, 1)
+        Dim secondNum As String = input.Substring(1, 1)
+
+        '' string to hold the top level path (g:\WSCAN\MM#\)
+        Dim wscanPath As String = MMWSCANBASEPATH & MMBASEPATH & firstNum & "\"
+
+        '' if 1,5,7 no #-# subfolder
+        If Not (firstNum = "1" Or firstNum = "5" Or firstNum = "9") Then
+            '' #-#\
+            wscanPath = wscanPath & firstNum & "-" & secondNum & "\"
+        End If
+
+        '' ####\
+        wscanPath = wscanPath & input.Substring(0, 4) & "\"
+
+        paths.Add(wscanPath)
+
+        Return paths
+
+    End Function
+
     Private Sub getAllSubfolders(ByVal topLevelPath As String)
         Dim subfolder As String
 
@@ -264,8 +340,6 @@ Public Class Form1
     End Sub
 
     Private Sub getFileList(ByVal search As String)
-        '' debug
-        lstboxPathList.Items.Clear()
 
         '' loop through list of paths
         For Each path In pathList
