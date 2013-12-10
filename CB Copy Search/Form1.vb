@@ -46,6 +46,9 @@ Public Class Form1
             fileList.Clear()
             pathList.Clear()
 
+            '' trim whitespace from the search box
+            txtSearch.Text = txtSearch.Text.Trim
+
             '' if the box isn't empty or less than two characters, search
             If (txtSearch.Text <> "" And txtSearch.Text.Length > 1) Then
 
@@ -112,7 +115,7 @@ Public Class Form1
 
                     '' this is hacky, needs thought out more, but it works
                     '' now if this is MM, do a wscan search
-                    If (My.Settings.isMM) Then
+                    If ((My.Settings.isMM) And (txtSearch.Text.Length > 3)) Then
                         '' get path(s) for wscan search
                         topLevelPaths = MMgetWscanPaths(txtSearch.Text)
                         '' clear the lists
