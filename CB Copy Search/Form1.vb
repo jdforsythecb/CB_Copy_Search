@@ -23,6 +23,7 @@ Public Class Form1
 
     '' global variable to hold the current fileinfo list - IO.FileInfo to preserve the name and path of files
     Dim fileList As New List(Of IO.FileInfo)
+    Dim masterFileList As New List(Of IO.FileInfo)
 
     '' global variable to hold the full list of paths to search
     Dim pathList As New List(Of String)
@@ -44,6 +45,7 @@ Public Class Form1
             lstbxResults.Items.Clear()
             lstboxPathList.Items.Clear()
             fileList.Clear()
+            masterFileList.Clear()
             pathList.Clear()
 
             '' trim whitespace from the search box
@@ -100,6 +102,7 @@ Public Class Form1
                     '' add the new results to the list
                     For Each file In fileList
                         lstbxResults.Items.Add(file.Name)
+                        masterFileList.Add(file)
 
                         '' if the directory isn't in the list yet, add it and increment the folder count
                         Dim str As String = file.DirectoryName
@@ -136,6 +139,7 @@ Public Class Form1
                         '' iterate through the new files
                         For Each file In fileList
                             lstbxResults.Items.Add(file.Name)
+                            masterFileList.Add(file)
 
                             '' if the directory isn't in the list, add it and increment folder count
                             Dim str As String = file.DirectoryName
