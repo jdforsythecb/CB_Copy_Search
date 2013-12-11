@@ -174,7 +174,7 @@ Public Class Form1
         '' open the selected file in its default program
         Dim openFile As New ProcessStartInfo()
         With openFile
-            .FileName = fileList(lstbxResults.SelectedIndex).FullName
+            .FileName = masterFileList(lstbxResults.SelectedIndex).FullName
             .UseShellExecute = True
         End With
         Process.Start(openFile)
@@ -191,7 +191,7 @@ Public Class Form1
             If selInd <> -1 Then
 
                 '' get the full path of the item selected
-                Dim selectedPath As String = fileList(selInd).FullName
+                Dim selectedPath As String = masterFileList(selInd).FullName
 
                 '' open explorer and select the file clicked
                 Call Shell("explorer.exe /select," & selectedPath, AppWinStyle.NormalFocus)
